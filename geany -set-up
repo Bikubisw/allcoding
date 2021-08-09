@@ -1,0 +1,62 @@
+Video tutorial: https://youtu.be/ePZEkbbf3fc
+
+For competitive programming, I use Ubuntu (a popular free Linux distribution) dual booted alongside Windows. My favorite IDE is Geany and it's perfect for short codes in CP, but I don't recommend it for work and big projects. Here's setup instructions.
+
+Download Ubuntu from https://ubuntu.com/download.
+Create a bootable USB with https://rufus.ie or any other software.
+Install Ubuntu from your USB, preferably alongside the current OS (like Windows).
+Open terminal in Activities or with ctrl+alt+T.
+Install Geany and g++:
+sudo apt install geany
+sudo apt install g++
+Configure Geany preferences:
+6.1. Open preferences with ctrl+alt+P.
+6.2. In Keybindings tab, set Switch to Editor as F1 and confirm overriding, then Switch to VTE as F2 (VTE is built-in terminal).
+6.3. In Terminal tab, mark Follow path of the current file. Terminal will now automatically change a path after you open a new file.
+6.4. (optional) In General -> Miscellaneous, unmark Beep on errors.
+6.5. (optional) In Editor, change Comment toggle marker to an empty string or a single space.
+6.6. (optional) In Editor > Display, unmark Stop scrolling at last line and Long line marker Enabled.
+Open any C++ file in Geany, go to Build -> Set Build Commands and copy my flags.
+Compile (F8): g++ -std=c++17 -Wshadow -Wall -o "%e" "%f" -O2 -Wno-unused-result
+Build (F9): g++ -std=c++17 -Wshadow -Wall -o "%e" "%f" -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG
+If you get compilation errors, try changing from c++17 to c++14 and/or removing sanitizers (two fsanitize flags).
+Open a file ~/.bashrc and uncomment a line #force_color_prompt=yes in order to get colorful terminal in Geany. In the same file, add a line ulimit -s 2000123 to set the stack limit to around 2GB. Restart geany (or your PC) or run source ~/.bashrc to trigger the change.
+Optional steps which I use:
+
+Hide Toolbar and Sidebar by unmarking them in View.
+Install Guake and make it run on start-up:
+sudo apt install guake
+Activities (top-left corner) -> Startup Applications Preferences -> Add -> set name and command as guake
+Open system settings (top-right corner of the screen) and mark Auto-hide the Dock in Dock tab.
+Download Monokai theme from https://www.geany.org/download/themes/, change comment color to comment=#FF00FF and apply it in View > Change Color Scheme.
+If underscores are not visible for some font sizes, use [styling]\nline_height=0;2; (https://github.com/geany/geany/issues/1387).
+Grab testlib from https://github.com/MikeMirzayanov/testlib/blob/master/testlib.h, add first line #pragma GCC diagnostic ignored "-Wshadow" and last line #pragma GCC diagnostic pop, move the file to /usr/local/include.
+More info and details below.
+
+You can install stuff by using Software Center or typing a command in terminal, usually sudo apt install program_name. This should be displayed if you just type geany (Command 'geany' not found, but can be installed with: sudo apt install geany). If this doesn't work, I usually google ubuntu how to install program_name from terminal and follow the instructions.
+Guake allows you to summon a fullscreen terminal by clicking the F12 button, which is more comfortable than a new terminal window that you can open with ctrl+alt+T. It isn't important if you use Geany built-in terminal though.
+Comment toggle marker refers to a special character added to comments created with shortcut ctrl+E in Geany. The default ~ means that commented lines will look like //~ int a = 2 + 2;. It's ok to get rid of the ~ character.
+In Preferences -> Interface, you can switch the position of Geany terminal (and message window) between bottom and right.
+python3 is likely already installed, consider defining python as the same command (more info) in terminal:
+update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+Update: At the end of 2020, I decided to switch from dual boot to VM. The setup takes more effort but then I can code in Ubuntu while recording and drawing with Windows software.
+
+ Pages 14
+Find a Page…
+Home
+Coding interviews
+Current notes
+DP lecture
+FAQ
+Gaussian Elimination lecture
+How to practice?
+IOI Syllabus
+Lazy Stream Videos Links
+Learning resources
+Linux & Geany Setup
+Notes for lectures
+Plans
+State of the channel
+Clone this wiki locally
+https://github.com/Errichto/youtube.wiki.git
+
